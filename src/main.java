@@ -1,4 +1,5 @@
 import java.util.*;
+import ja
 public class main {
 
 	public static void main(String[] args) {
@@ -13,26 +14,22 @@ public class main {
 	
 	
 	public static String generarSucesores() {
-		List<Character> l = new ArrayList<Character>();
-		for (int i=0;i<10;i++) l.add(Character.forDigit(i,10));
-		List<Character> l2 = new ArrayList<Character>();
-		l2.add('*');
-		l2.add('-');
-		l2.add('+');
-		l2.add('/');		
-		ArrayList<Character> l1 = new ArrayList<Character>();
+		List<Character> numeros = new ArrayList<Character>();
+		for (int i=0;i<10;i++) numeros.add(Character.forDigit(i,10));
+		String[] operaciones= {"*","/","+","-"};
+		List<String> l2 = Arrays.asList(operaciones);	
+		Collections.shuffle(numeros);	
+		Collections.shuffle(l2);
+		ArrayList<Character> sucesoresLista = new ArrayList<Character>();
 		for(int i=0;i<9;i++) {
 			if(i<7) {
-			l1.add(l.remove((int) (Math.random() * (l.size()-1))));	
+				sucesoresLista.add(numeros.get(i));	
 			}
 			else {
-				l1.add(l2.remove((int) (Math.random() * (l.size()))));
+				sucesoresLista.add(l2.get(9-i).charAt(0));
 			}
 		}
-		String sucesores=l1.toString().replace(" ", "");
-		sucesores=sucesores.replace("[", "");
-		sucesores=sucesores.replace("]", "");
-		sucesores=sucesores.replace(",", "");
+		String sucesores=sucesoresLista.toString().replace(" ", "").replace("[", "").replace("]", "").replace(",", "");
 		return sucesores;
 	}
 	

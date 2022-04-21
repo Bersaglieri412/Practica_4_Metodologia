@@ -4,9 +4,9 @@ public class main {
 	public static void main(String[] args) {
 		String sucesores;
 		int solucion=((int) (Math.random() * 99)-9);
-		System.out.println(sucesores=generarSucesores());
-		System.out.println("Solucion a alcanzar: "+solucion);
-		Backtracking b = new Backtracking(-5,sucesores); //Acuerdate de sustituir el -5 por solucion
+		System.out.println("Solucion a alcanzar: "+solucion+"\n");
+		System.out.println("Números y operaciones a utilizar:"+(sucesores=generarSucesores())+"\n");
+		Backtracking b = new Backtracking(solucion,sucesores); //Acuerdate de sustituir el -5 por solucion
 		char[] v = new char[5];
 		b.bactrackingM(-1, v);
 	}

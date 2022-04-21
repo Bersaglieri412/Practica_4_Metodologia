@@ -3,18 +3,18 @@ import java.util.Arrays;
 public class Backtracking {
 	private int n;
 	private int solucion;
-	private String sucesores=null;
+	private String elementos=null;
 	private boolean encontrado=false;
 	
-	public Backtracking(int solucion, String sucesores) {
+	public Backtracking(int solucion, String elementos) {
 		super();
 		this.solucion = solucion;
-		this.sucesores=sucesores;
+		this.elementos=elementos;
 	}
 	
-	public void bactrackingM(int etapa, char[] v) {
+	public boolean bactrackingM(int etapa, char[] v) {
 		if(etapa==4 && esSolucion(v) && !encontrado) {
-			System.out.println("Solución: ");
+			System.out.println("Solución encontrada: ");
 			for(int i=0; i<v.length+1;i++) {			
 				if(i<v.length)System.out.print(v[i]);
 				else System.out.println("="+solucion);
@@ -23,13 +23,13 @@ public class Backtracking {
 			encontrado=true;
 		}
 		else if(etapa<4 && !encontrado) { //No es necesario buscar fracaso, porque si ya está en la etapa final y no es éxito, será también fracaso
-			char[] s=genSucesor(v,etapa+1);
-			for(int k=0;k<s.length;k++) {
-				v[etapa+1]=s[k];
+			char[] sucesores=genSucesor(v,etapa+1);
+			for(int k=0;k<sucesores.length;k++) {
+				v[etapa+1]=sucesores[k];
 				bactrackingM(etapa+1,v);
 			}
 		}
-		
+		return encontrado;
 	}
 	
 	public boolean esSolucion(char[]v) {
@@ -77,16 +77,16 @@ public class Backtracking {
 	}
 	
 	public char[] genSucesor(char[] v, int etapa) {//números disponibles para poner
-		char[] s;
+		char[] sucesores;
 		if(etapa==2) {
-		s=sucesores.substring(7).toCharArray();
+		sucesores=elementos.substring(7).toCharArray();
 		}
 		
 		else {
-		s=sucesores.substring(0, 7).toCharArray();
+		sucesores=elementos.substring(0, 7).toCharArray();
 		}
 		
-		return s;
+		return sucesores;
 	}
 	
 }

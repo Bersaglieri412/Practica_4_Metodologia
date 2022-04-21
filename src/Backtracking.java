@@ -4,6 +4,7 @@ public class Backtracking {
 	private int n;
 	private int solucion;
 	private String sucesores=null;
+	private boolean encontrado=false;
 	
 	public Backtracking(int solucion, String sucesores) {
 		super();
@@ -12,12 +13,13 @@ public class Backtracking {
 	}
 	
 	public void bactrackingM(int etapa, char[] v) {
-		if(etapa==4 && esSolucion(v)) {
+		if(etapa==4 && esSolucion(v) && !encontrado) {
 			System.out.println("Solución: ");
 			for(int i=0; i<v.length;i++) System.out.print(v[i]);
 			System.out.println();
+			encontrado=true;
 		}
-		else if(etapa<4) { //No es necesario buscar fracaso, porque si ya está en la etapa final y no es éxito, será también fracaso
+		else if(etapa<4 && !encontrado) { //No es necesario buscar fracaso, porque si ya está en la etapa final y no es éxito, será también fracaso
 			char[] s=genSucesor(v,etapa+1);
 			for(int k=0;k<s.length;k++) {
 				v[etapa+1]=s[k];
